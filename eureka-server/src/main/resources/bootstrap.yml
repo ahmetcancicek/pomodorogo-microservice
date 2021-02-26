@@ -4,10 +4,7 @@ spring:
   cloud:
     config:
       profile: native
-      uri: http://localhost:8761
-
-server:
-  port: 8761
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
 
 eureka:
   client:
