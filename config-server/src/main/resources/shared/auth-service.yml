@@ -1,0 +1,13 @@
+server:
+  port: 8601
+
+spring:
+  application:
+    name: auth-service
+
+eureka:
+  client:
+    instance:
+      hostname: ${EUREKA_SERVER_HOSTNAME:localhost}
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
