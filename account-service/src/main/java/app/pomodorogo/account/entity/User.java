@@ -1,4 +1,4 @@
-package app.pomodorogo.entity;
+package app.pomodorogo.account.entity;
 
 
 import lombok.*;
