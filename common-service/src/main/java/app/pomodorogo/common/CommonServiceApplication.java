@@ -1,4 +1,4 @@
-package app.pomodorogo;
+package app.pomodorogo.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
