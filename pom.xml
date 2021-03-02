@@ -8,6 +8,7 @@
     <artifactId>pomodorogo-microservice</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>pomodorogo</name>
 
     <modules>
         <module>eureka-server</module>
@@ -26,6 +27,7 @@
     </parent>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
     </properties>
