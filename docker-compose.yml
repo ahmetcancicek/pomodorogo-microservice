@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  config:
+    container_name: config-server
+    restart: always
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+
+  eureka:
+    container_name: eureka-server
+    restart: always
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
