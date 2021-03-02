@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>config-server</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>11</java.version>
@@ -23,6 +24,7 @@
     </dependencies>
 
     <build>
+        <finalName>config-server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
