@@ -1,9 +1,16 @@
 server:
-  port: 8600
+  port: 8601
 
 spring:
   application:
     name: account-service
+  data:
+    mongodb:
+      host: account-mongodb
+      username: user
+      password= ${MONGODB_PASSWORD: password}
+      database= ${MONGODB_DATABASE: pomodorogo}
+      port: 27017
 
 eureka:
   client:
