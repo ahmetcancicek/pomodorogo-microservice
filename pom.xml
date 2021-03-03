@@ -15,7 +15,6 @@
         <module>config-server</module>
         <module>gateway-server</module>
         <module>auth-service</module>
-        <module>common-service</module>
         <module>account-service</module>
     </modules>
 
