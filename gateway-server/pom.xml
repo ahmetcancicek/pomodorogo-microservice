@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gateway-server</artifactId>
+    <packaging>jar</packaging>
+    <name>gateway-server</name>
+    <description>Gateway Server</description>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <java.version>11</java.version>
@@ -40,6 +44,7 @@
     </dependencies>
 
     <build>
+        <finalName>gateway-server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
