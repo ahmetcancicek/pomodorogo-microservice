@@ -1,12 +1,13 @@
+server:
+  port: ${EUREKA_SERVER_PORT:8761}
+
 spring:
   application:
     name: eureka-server
   cloud:
     config:
-      profile: native
-      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+      uri: ${CONFIG_SERVER_URL:http://config:8888}
+      username: ${CONFIG_SERVICE_USER_NAME:user}
+      password: ${CONFIG_SERVICE_USER_PASSWORD:password}
 
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
+

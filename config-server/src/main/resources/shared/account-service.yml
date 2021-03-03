@@ -1,20 +1,13 @@
 server:
-  port: 8601
+  port: ${ACCOUNT_SERVICE_PORT:8600}
 
 spring:
   application:
     name: account-service
-  data:
-    mongodb:
-      host: account-mongodb
-      username: user
-      password= ${MONGODB_PASSWORD: password}
-      database= ${MONGODB_DATABASE: pomodorogo}
-      port: 27017
 
 eureka:
   client:
     instance:
-      hostname: ${EUREKA_SERVER_HOSTNAME:localhost}
+      hostname: ${EUREKA_SERVER_HOSTNAME:registry}
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+      defaultZone: ${EUREKA_SERVER_URL:http://registry:8761/eureka/}

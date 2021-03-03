@@ -1,5 +1,5 @@
 server:
-  port: 8600
+  port: ${AUTH_SERVICE_PORT:8600}
 
 spring:
   application:
@@ -8,6 +8,6 @@ spring:
 eureka:
   client:
     instance:
-      hostname: ${EUREKA_SERVER_HOSTNAME:localhost}
+      hostname: ${EUREKA_SERVER_HOSTNAME:registry}
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+      defaultZone: ${EUREKA_SERVER_URL:http://registry:8761/eureka/}

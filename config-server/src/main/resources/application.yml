@@ -8,7 +8,10 @@ spring:
           search-locations: classpath:/shared
   profiles:
     active: native
-
+  security:
+    user:
+      password: ${CONFIG_SERVICE_USER_PASSWORD:password}
+      name: ${CONFIG_SERVICE_USER_NAME:user}
 
 server:
-  port: ${SERVER_PORT:8888}
+  port: ${CONFIG_SERVER_PORT:8888}
