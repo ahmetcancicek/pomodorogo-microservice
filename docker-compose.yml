@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
-    depends_on:
+    links:
       - config
 
   gateway:
@@ -28,18 +28,29 @@ services:
       context: ./gateway-server
       dockerfile: Dockerfile
     ports:
-    - "8080:8080"
-    depends_on:
-      - config
+      - "8080:8080"
+    links:
+      - eureka
 
-  auth:
+  auth-service:
     container_name: auth-service
     restart: always
     build:
       context: ./auth-service
       dockerfile: Dockerfile
     ports:
-    - "8600:8600"
-    depends_on:
-      - config
+      - "8600:8600"
+    links:
       - eureka
+
+  auth-mongodb:
+    restart: always
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_USERNAME: user
+      MONGO_INITDB_PASSWORD: password
+      MONGO_INITDB_DATABASE: pomodorogo
