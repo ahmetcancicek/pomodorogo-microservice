@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>eureka-server</artifactId>
+    <artifactId>registry-server</artifactId>
     <packaging>jar</packaging>
-    <name>eureka-server</name>
-    <description>Eureka Server</description>
+    <name>registry-server</name>
+    <description>Registry Server</description>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
