@@ -13,3 +13,9 @@ zuul:
       url: http://auth-service:8600
       stripPrefix: false
       sensitiveHeaders:
+
+    account-service:
+      path: /api/accounts/**
+      url: http://auth-service:8600
+      stripPrefix: false
+      sensitiveHeaders:
