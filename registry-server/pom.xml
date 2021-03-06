@@ -38,7 +38,7 @@
     </dependencies>
 
     <build>
-        <finalName>eureka-server</finalName>
+        <finalName>registry-server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
