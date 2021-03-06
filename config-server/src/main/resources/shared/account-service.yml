@@ -4,10 +4,3 @@ server:
 spring:
   application:
     name: account-service
-
-eureka:
-  client:
-    instance:
-      hostname: ${EUREKA_SERVER_HOSTNAME:registry}
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://registry:8761/eureka/}
