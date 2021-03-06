@@ -48,3 +48,25 @@ services:
       MONGO_INITDB_USERNAME: user
       MONGO_INITDB_PASSWORD: password
       MONGO_INITDB_DATABASE: pomodorogo
+
+  account-service:
+    restart: always
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile
+    ports:
+      -  "8601:8601"
+    depends_on:
+      - account-mongodb
+
+  account-mongodb:
+    restart: always
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_USERNAME: user
+      MONGO_INITDB_PASSWORD: password
+      MONGO_INITDB_DATABASE: pomodorogo
