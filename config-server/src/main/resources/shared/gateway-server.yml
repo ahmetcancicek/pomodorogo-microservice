@@ -9,13 +9,13 @@ zuul:
 
   routes:
     auth-service:
-      path: /api/auth/**
+      path: /auth/**
       url: http://auth-service:8600
       stripPrefix: false
       sensitiveHeaders:
 
     account-service:
-      path: /api/accounts/**
-      url: http://auth-service:8600
+      path: /accounts/**
+      serviceId: account-service
       stripPrefix: false
       sensitiveHeaders:
