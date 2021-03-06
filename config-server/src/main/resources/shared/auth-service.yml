@@ -1,13 +1,15 @@
 server:
+  servlet:
+    context-path: /auth
   port: ${AUTH_SERVICE_PORT:8600}
 
 spring:
   application:
     name: auth-service
-
-eureka:
-  client:
-    instance:
-      hostname: ${EUREKA_SERVER_HOSTNAME:registry}
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://registry:8761/eureka/}
+  data:
+    mongodb:
+      host: auth-mongodb
+      username: ${MONGO_INITDB_USERNAME:user}
+      password: ${MONGO_INITDB_PASSWORD:password}
+      database: ${MONGO_INITDB_DATABASE:pomodorogo}
+      port: ${MONGODB_PORT:27017}
