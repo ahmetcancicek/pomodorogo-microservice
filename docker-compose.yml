@@ -2,35 +2,33 @@ version: '3.1'
 
 services:
   config:
-    container_name: config-server
+#    container_name: config-server
     restart: always
     build:
       context: ./config-server
       dockerfile: Dockerfile
     ports:
       - "8888:8888"
+    links:
+      - registry
 
-  eureka:
-    container_name: eureka-server
+  registry:
+#    container_name: registry-server
     restart: always
     build:
-      context: ./eureka-server
+      context: ./registry-server
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
-    links:
-      - config
 
   gateway:
-    container_name: gateway-server
+#    container_name: gateway-server
     restart: always
     build:
       context: ./gateway-server
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    links:
-      - eureka
 
   auth-service:
     container_name: auth-service
@@ -40,8 +38,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8600:8600"
-    links:
-      - eureka
+    depends_on:
+      - auth-mongodb
 
   auth-mongodb:
     restart: always
