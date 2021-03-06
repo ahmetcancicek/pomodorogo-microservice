@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "-----------START MONGO SCRIPT------------"
 mongo -- "$MONGO_INITDB_DATABASE" <<EOF
   var rootUser = '$MONGO_INITDB_ROOT_USERNAME';
   var rootPassword = '$MONGO_INITDB_ROOT_PASSWORD';
@@ -19,3 +20,4 @@ mongo -- "$MONGO_INITDB_DATABASE" <<EOF
     ]
   });
 EOF
+echo "-----------FINISH MONGO SCRIPT------------"
