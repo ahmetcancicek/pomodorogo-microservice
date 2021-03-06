@@ -1,0 +1,22 @@
+#server:
+#  port: ${EUREKA_SERVER_PORT:8761}
+
+spring:
+  application:
+    name: registry-server
+  cloud:
+    config:
+      fail-fast: true
+      uri: ${CONFIG_SERVER_URL:http://config:8888}
+      username: ${CONFIG_SERVICE_USER_NAME:user}
+      password: ${CONFIG_SERVICE_USER_PASSWORD:password}
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0

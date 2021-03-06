@@ -11,7 +11,7 @@
     <name>pomodorogo</name>
 
     <modules>
-        <module>eureka-server</module>
+        <module>registry-server</module>
         <module>config-server</module>
         <module>gateway-server</module>
         <module>auth-service</module>
