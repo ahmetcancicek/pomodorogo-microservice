@@ -2,7 +2,6 @@ version: '3.1'
 
 services:
   config:
-#    container_name: config-server
     restart: always
     build:
       context: ./config-server
@@ -13,7 +12,6 @@ services:
       - registry
 
   registry:
-#    container_name: registry-server
     restart: always
     build:
       context: ./registry-server
@@ -22,7 +20,6 @@ services:
       - "8761:8761"
 
   gateway:
-#    container_name: gateway-server
     restart: always
     build:
       context: ./gateway-server
@@ -31,7 +28,6 @@ services:
       - "8080:8080"
 
   auth-service:
-    container_name: auth-service
     restart: always
     build:
       context: ./auth-service
