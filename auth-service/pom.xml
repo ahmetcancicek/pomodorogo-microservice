@@ -11,7 +11,7 @@
 
     <artifactId>auth-service</artifactId>
     <packaging>jar</packaging>
-    <name>uth-service</name>
+    <name>auth-service</name>
     <description>Auth Service</description>
     <version>1.0-SNAPSHOT</version>
 
