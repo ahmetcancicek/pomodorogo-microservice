@@ -18,6 +18,8 @@ public class Account {
     @Id
     private String id;
 
+    private String user;
+
     @NotNull
     @Length(min = 3, max = 50)
     private String firstName;

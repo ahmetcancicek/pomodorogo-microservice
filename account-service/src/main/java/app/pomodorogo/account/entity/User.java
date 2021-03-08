@@ -9,32 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.UUID;
 
-@Document("users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class User {
-
     @Id
     private String id;
-
-    @Field("uuid")
-    @Indexed(unique = true)
-    private UUID uuid;
-
-    @Field("firstName")
-    @NotNull
-    @Length(min = 3, max = 50)
-    private String firstName;
-
-    @Field("lastName")
-    @NotNull
-    @Length(min = 3, max = 50)
-    private String lastName;
 
     @Field("username")
     @NotNull
@@ -52,11 +35,4 @@ public class User {
     @NotNull
     @Length(min = 6, max = 50)
     private String password;
-
-    @Field("createdAt")
-    @NotNull
-    private Date createdAt;
-
-    @Field("updatedAt")
-    private Date updatedAt;
 }

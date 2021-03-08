@@ -1,7 +1,6 @@
 package app.pomodorogo.auth.entity;
 
 import app.pomodorogo.auth.enums.Authorities;
-import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -11,23 +10,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
-@Document()
+@Document("users")
 public class User implements UserDetails {
 
     @Id
     private String id;
-
-    @Field("uuid")
-    @Indexed(unique = true)
-    private UUID uuid;
 
     @Field("username")
     @NotNull
@@ -45,13 +35,6 @@ public class User implements UserDetails {
     @NotNull
     @Length(min = 6, max = 50)
     private String password;
-
-    @Field("createdAt")
-    @NotNull
-    private LocalDateTime createdAt;
-
-    @Field("updatedAt")
-    private LocalDateTime updatedAt;
 
     private boolean activated;
 
@@ -119,30 +102,6 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public String getResetPasswordKey() {
