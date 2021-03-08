@@ -9,7 +9,7 @@ zuul:
 
   routes:
     auth-service:
-      path: /auth/**
+      path: /uaa/**
       url: http://auth-service:8600
       stripPrefix: false
       sensitiveHeaders:

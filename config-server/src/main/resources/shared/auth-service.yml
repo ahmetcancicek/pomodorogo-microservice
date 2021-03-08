@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /auth
+    context-path: /uaa
   port: ${AUTH_SERVICE_PORT:8600}
 
 spring:
