@@ -1,4 +1,4 @@
-package app.pomodorogo.auth.configuration;
+package app.pomodorogo.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
