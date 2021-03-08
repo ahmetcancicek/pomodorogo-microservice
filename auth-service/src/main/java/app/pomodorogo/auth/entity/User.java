@@ -19,7 +19,7 @@ import java.util.*;
 //@AllArgsConstructor
 //@NoArgsConstructor
 //@Builder
-@Document("users")
+@Document()
 public class User implements UserDetails {
 
     @Id
