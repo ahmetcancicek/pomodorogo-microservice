@@ -1,6 +1,6 @@
 package app.pomodorogo.auth.service;
 
-import app.pomodorogo.auth.entity.User;
+import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.enums.Authorities;
 import app.pomodorogo.auth.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;

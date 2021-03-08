@@ -2,7 +2,7 @@ package app.pomodorogo.auth.controller;
 
 import app.pomodorogo.auth.dto.UserResponse;
 import app.pomodorogo.auth.dto.UserRegisterRequest;
-import app.pomodorogo.auth.entity.User;
+import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;

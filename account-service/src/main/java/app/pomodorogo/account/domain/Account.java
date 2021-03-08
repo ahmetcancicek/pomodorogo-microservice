@@ -1,4 +1,4 @@
-package app.pomodorogo.account.entity;
+package app.pomodorogo.account.domain;
 
 import lombok.Data;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;

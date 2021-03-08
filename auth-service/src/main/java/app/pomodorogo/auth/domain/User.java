@@ -1,4 +1,4 @@
-package app.pomodorogo.auth.entity;
+package app.pomodorogo.auth.domain;
 
 import app.pomodorogo.auth.enums.Authorities;
 import org.hibernate.validator.constraints.Length;

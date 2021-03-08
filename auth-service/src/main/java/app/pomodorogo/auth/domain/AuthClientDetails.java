@@ -1,4 +1,4 @@
-package app.pomodorogo.auth.entity;
+package app.pomodorogo.auth.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,6 +1,6 @@
 package app.pomodorogo.auth.repository;
 
-import app.pomodorogo.auth.entity.User;
+import app.pomodorogo.auth.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
