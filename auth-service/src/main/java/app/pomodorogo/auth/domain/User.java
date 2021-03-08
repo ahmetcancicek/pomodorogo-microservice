@@ -33,7 +33,7 @@ public class User implements UserDetails {
 
     @Field("password")
     @NotNull
-    @Length(min = 6, max = 50)
+    @Length(min = 4, max = 50)
     private String password;
 
     private boolean activated;
