@@ -54,8 +54,8 @@ public class UserControllerTest {
 
     @Test
     public void When_CurrentUserCalled_Expect_ReturnUser() throws Exception {
-        mockMvc.perform(get("/users/current").principal(new UserPrincipal("username")))
-                .andExpect(jsonPath("$.name").value("username"))
+        mockMvc.perform(get("/users/current").principal(new UserPrincipal("test")))
+                .andExpect(jsonPath("$.name").value("test"))
                 .andExpect(status().isOk());
     }
 }

@@ -3,6 +3,7 @@ package app.pomodorogo.auth.service;
 import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.enums.Authorities;
 import app.pomodorogo.auth.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
@@ -32,12 +34,16 @@ public class UserServiceImpl implements UserService {
         user.setActivated(Boolean.TRUE);
         user.setAuthorities(new HashSet<>(Collections.singletonList(Authorities.ROLE_USER)));
 
-        return userRepository.save(user);
+        User createdUser = userRepository.save(user);
+
+        log.info("new user has been created: {}" + user.getUsername());
+
+        return createdUser;
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username)
+    public User findById(String username) {
+        return userRepository.findById(username)
                 .stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findFirst()
@@ -58,7 +64,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void throwIfUsernameExists(String username) {
-        Optional<User> existingUser = userRepository.findByUsername(username);
+        Optional<User> existingUser = userRepository.findById(username);
         existingUser.ifPresent((it) -> {
             throw new IllegalArgumentException("username is not found for given username: " + username);
         });

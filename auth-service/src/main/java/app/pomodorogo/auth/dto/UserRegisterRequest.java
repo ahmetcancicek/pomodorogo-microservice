@@ -14,8 +14,6 @@ public class UserRegisterRequest {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
-
     @NotNull(message = "Username can not be null.")
     @Size(min = 3,max = 50,message = "Username must be at least 3 characters")
     private String username;

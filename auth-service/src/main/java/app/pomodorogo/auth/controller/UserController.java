@@ -35,7 +35,6 @@ public class UserController {
 
     private UserResponse toDto(User user) {
         UserResponse userResponse = new UserResponse();
-        userResponse.setId(user.getId());
         userResponse.setUsername(user.getUsername());
         userResponse.setEmail(user.getEmail());
         return userResponse;

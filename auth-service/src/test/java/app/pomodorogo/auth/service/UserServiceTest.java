@@ -58,7 +58,7 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
-        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
+        when(userRepository.findById(user.getUsername())).thenReturn(Optional.of(user));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             userService.create(user);
@@ -90,8 +90,8 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
-        when(userRepository.findByUsername(user.getUsername())).thenReturn(Optional.of(user));
-        assertNotNull(userService.findByUsername(user.getUsername()));
+        when(userRepository.findById(user.getUsername())).thenReturn(Optional.of(user));
+        assertNotNull(userService.findById(user.getUsername()));
     }
 
     @Test

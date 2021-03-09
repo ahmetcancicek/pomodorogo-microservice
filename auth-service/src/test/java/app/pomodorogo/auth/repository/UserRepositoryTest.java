@@ -32,7 +32,7 @@ public class UserRepositoryTest {
 
     @AfterEach
     public void doClean() {
-        repository.deleteById(user.getId());
+        repository.deleteById(user.getUsername());
     }
 
     @Test
@@ -49,8 +49,8 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void When_UsernameExitsAndFindByUsernameCalled_Expect_ReturnUser() {
-        Optional<User> existingUser = repository.findByUsername("username");
+    public void When_UsernameExitsAndFindByIdCalled_Expect_ReturnUser() {
+        Optional<User> existingUser = repository.findById("username");
         assertEquals(existingUser.isPresent(), true);
     }
 
@@ -61,8 +61,8 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void When_UsernameDoesNotExitsAndFindByUsernameCalled_Expect_ReturnFail() {
-        Optional<User> existingUser = repository.findByUsername("test");
+    public void When_UsernameDoesNotExitsAndFindByIdCalled_Expect_ReturnFail() {
+        Optional<User> existingUser = repository.findById("test");
         assertEquals(existingUser.isPresent(), false);
     }
 

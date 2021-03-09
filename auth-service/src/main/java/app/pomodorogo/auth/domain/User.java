@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
@@ -23,18 +24,14 @@ import java.util.*;
 public class User implements UserDetails {
 
     @Id
-    private String id;
-
-    @Field("username")
-    @NotNull
     @Length(min = 4, max = 50)
-    @Indexed(unique = true)
     private String username;
 
     @Field("email")
     @NotNull
     @Length(min = 6, max = 50)
     @Indexed(unique = true)
+    @Email
     private String email;
 
     @Field("password")
@@ -51,7 +48,7 @@ public class User implements UserDetails {
     private Set<Authorities> authorities = new HashSet<>();
 
     @Override
-    public List<GrantedAuthority> getAuthorities(){
+    public List<GrantedAuthority> getAuthorities() {
         return new ArrayList<>(authorities);
     }
 
@@ -85,14 +82,6 @@ public class User implements UserDetails {
         return activated;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -100,7 +89,6 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getEmail() {
         return email;
@@ -137,18 +125,4 @@ public class User implements UserDetails {
     public void setAuthorities(Set<Authorities> authorities) {
         this.authorities = authorities;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o==null || getClass()!=o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
-
 }
