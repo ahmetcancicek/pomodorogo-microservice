@@ -18,7 +18,7 @@ public class Account {
     @Id
     private String id;
 
-    private String user;
+    private String userId;
 
     @NotNull
     @Length(min = 3, max = 50)

@@ -1,6 +1,9 @@
 package app.pomodorogo.auth.domain;
 
 import app.pomodorogo.auth.enums.Authorities;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,6 +17,9 @@ import java.util.*;
 
 
 @Document("users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
