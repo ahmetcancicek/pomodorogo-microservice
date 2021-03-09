@@ -14,7 +14,6 @@ public class UserRegisterRequest {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull
     private String id;
 
     @NotNull(message = "Username can not be null.")
