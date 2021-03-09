@@ -32,6 +32,8 @@ services:
     build:
       context: ./auth-service
       dockerfile: Dockerfile
+    environment:
+      ACCOUNT_SERVICE_PASSWORD: password
     ports:
       - "8600:8600"
     depends_on:
