@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         throwIfUsernameExists(user.getUsername());
+        throwIfEmailExists(user.getEmail());
 
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
@@ -34,10 +35,39 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .stream()
+                .filter(user -> user.getUsername().equals(username))
+                .findFirst()
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException("username is not found for given username: " + username);
+                });
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst()
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException("email is not found for given email: " + email);
+                });
+    }
+
     private void throwIfUsernameExists(String username) {
         Optional<User> existingUser = userRepository.findByUsername(username);
         existingUser.ifPresent((it) -> {
-            throw new IllegalArgumentException("user not avaiable");
+            throw new IllegalArgumentException("username is not found for given username: " + username);
+        });
+    }
+
+    private void throwIfEmailExists(String email) {
+        Optional<User> existingUser = userRepository.findByEmail(email);
+        existingUser.ifPresent((it) -> {
+            throw new IllegalArgumentException("email is not found for given email: " + email);
         });
     }
 }
