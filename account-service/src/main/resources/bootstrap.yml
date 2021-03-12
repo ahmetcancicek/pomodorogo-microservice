@@ -3,7 +3,9 @@ spring:
     name: account-service
   cloud:
     config:
-      profile: native
       uri: ${CONFIG_SERVER_URL:http://config:8888}
+      fail-fast: true
       username: ${CONFIG_SERVICE_USER_NAME:user}
       password: ${CONFIG_SERVICE_USER_PASSWORD:password}
+  main:
+    allow-bean-definition-overriding: true
