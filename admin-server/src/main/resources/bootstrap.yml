@@ -1,0 +1,17 @@
+server:
+  port: ${ADMIN_SERVER_PORT:8765}
+
+spring:
+  application:
+    name: admin-server
+  boot:
+    admin:
+      discovery:
+        ignored-services: gateway-service
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+
