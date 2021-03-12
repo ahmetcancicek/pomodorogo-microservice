@@ -1,6 +1,7 @@
 package app.pomodorogo.account.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,12 +11,10 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserRegisterRequest {
 
     private static final long serialVersionUID = 1L;
-
-    @NotNull
-    private String id;
 
     @NotNull(message = "Username can not be null.")
     @Size(min = 3,max = 50,message = "Username must be at least 3 characters")
