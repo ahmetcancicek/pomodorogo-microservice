@@ -17,7 +17,7 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -28,9 +28,8 @@ public class UserController {
 
     @PostMapping
     @PreAuthorize("#oauth2.hasScope('server')")
-    public UserResponse createUser(@Valid @RequestBody UserRegisterRequest userRegistration) {
-        User createdUser = userService.create(toUser(userRegistration));
-        return toDto(createdUser);
+    public void createUser(@Valid @RequestBody UserRegisterRequest userRegisterRequest) {
+        userService.create(toUser(userRegisterRequest));
     }
 
     private UserResponse toDto(User user) {
