@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -20,6 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     private TokenStore tokenStore = new InMemoryTokenStore();
+    private final String NOOP_PASSWORD_ENCODE = "{noop}";
 
     @Autowired
     @Qualifier("authenticationManagerBean")
@@ -28,24 +30,26 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    private AuthClientDetailsService authClientDetailsService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
-                .passwordEncoder(passwordEncoder)
-                .allowFormAuthenticationForClients();
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(authClientDetailsService);
+        clients.inMemory()
+                .withClient("browser")
+                .authorizedGrantTypes("refresh_token", "password")
+                .scopes("ui")
+                .and()
+                .withClient("account-service")
+                .secret("password")
+                .authorizedGrantTypes("client_credentials", "refresh_token")
+                .scopes("server");
     }
 
     @Override
