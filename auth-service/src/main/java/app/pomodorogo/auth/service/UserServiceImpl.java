@@ -66,14 +66,14 @@ public class UserServiceImpl implements UserService {
     private void throwIfUsernameExists(String username) {
         Optional<User> existingUser = userRepository.findById(username);
         existingUser.ifPresent((it) -> {
-            throw new IllegalArgumentException("username is not found for given username: " + username);
+            throw new IllegalArgumentException("user already exists for given username: " + username);
         });
     }
 
     private void throwIfEmailExists(String email) {
         Optional<User> existingUser = userRepository.findByEmail(email);
         existingUser.ifPresent((it) -> {
-            throw new IllegalArgumentException("email is not found for given email: " + email);
+            throw new IllegalArgumentException("user already exists for given email: " + email);
         });
     }
 }
