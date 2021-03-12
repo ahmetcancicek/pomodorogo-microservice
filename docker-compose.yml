@@ -72,3 +72,11 @@ services:
       MONGO_INITDB_DATABASE: pomodorogo
     ports:
       - "27018:27017"
+
+  admin-server:
+    restart: always
+    build:
+      context: ./admin-server
+      dockerfile: Dockerfile
+    ports:
+      - "8765:8765"
