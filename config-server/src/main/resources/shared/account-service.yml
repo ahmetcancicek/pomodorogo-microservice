@@ -22,3 +22,7 @@ security:
       accessTokenUri: http://auth-service:8600/uaa/oauth/token
       grant-type: client_credentials
       scope: server
+
+feign:
+  hystrix:
+    enabled: true
