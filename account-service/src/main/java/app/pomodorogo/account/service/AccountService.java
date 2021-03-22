@@ -1,6 +1,6 @@
 package app.pomodorogo.account.service;
 
-import app.pomodorogo.account.dto.AccountRequest;
+import app.pomodorogo.account.dto.AccountCreateRequest;
 import app.pomodorogo.account.dto.AccountResponse;
 
 public interface AccountService {
@@ -17,12 +17,16 @@ public interface AccountService {
      * Checks if account with given name already exists
      * Invokes Auth Service user creation
      * Creates new account
-     * @param accountRequest
+     * @param accountCreateRequest
      * @return created account
      */
-    AccountResponse create(AccountRequest accountRequest);
+    AccountResponse create(AccountCreateRequest accountCreateRequest);
 
 
-
-    void update(String id, AccountRequest update);
+    /***
+     *
+     * @param id
+     * @param update
+     */
+    void update(String id, AccountCreateRequest update);
 }
