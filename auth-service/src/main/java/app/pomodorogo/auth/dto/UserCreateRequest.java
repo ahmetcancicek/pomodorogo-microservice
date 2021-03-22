@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegisterRequest {
+public class UserCreateRequest {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,10 @@ public class UserRegisterRequest {
     private String username;
 
     @NotNull
-    @Size(min = 10,max = 50)
+    @Size(min = 10,max = 50,message = "Email must be at least 10 characters")
     private String email;
 
     @NotNull
-    @Size(min = 4,max = 50)
+    @Size(min = 4,max = 50,message = "Password must be at least 4 characters")
     private String password;
 }

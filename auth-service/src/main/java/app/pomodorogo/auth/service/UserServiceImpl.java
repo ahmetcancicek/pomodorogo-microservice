@@ -3,6 +3,7 @@ package app.pomodorogo.auth.service;
 import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.enums.Authorities;
 import app.pomodorogo.auth.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,11 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-
-    public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-    }
 
     @Override
     public User create(User user) {
@@ -30,7 +27,6 @@ public class UserServiceImpl implements UserService {
 
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        // TODO: Should send email with code for activation
         user.setActivated(Boolean.TRUE);
         user.setAuthorities(new HashSet<>(Collections.singletonList(Authorities.ROLE_USER)));
 
