@@ -6,12 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @Document("accounts")
@@ -25,17 +26,19 @@ public class Account {
     @Length(min = 4, max = 50)
     private String name;
 
-    @NotNull
-    @Length(min = 3, max = 50)
+    @NotNull(message = "First name can not be null.")
+    @Length(min = 3, max = 50, message = "First name must be at least 3 characters")
     private String firstName;
 
     @NotNull
     @Length(min = 3, max = 50)
     private String lastName;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    private Date lastSeen;
+    private LocalDateTime lastSeen;
 }
