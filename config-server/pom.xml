@@ -35,7 +35,7 @@
     </dependencies>
 
     <build>
-        <finalName>config-server</finalName>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
