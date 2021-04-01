@@ -17,6 +17,7 @@
         <module>auth-service</module>
         <module>account-service</module>
         <module>admin-server</module>
+        <module>monitoring-server</module>
     </modules>
 
     <parent>
