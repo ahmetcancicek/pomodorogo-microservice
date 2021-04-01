@@ -7,18 +7,18 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000 # Configure hystrix timeout, greater than (RibbonReadTimeout + RibbonConnectTimeout) * (MaxAutoRetries + 1) * (MaxAutoRetriesNextServer + 1)
+            timeoutInMilliseconds: 20000 # Configure hystrix timeout, greater than (RibbonReadTimeout + RibbonConnectTimeout) * (MaxAutoRetries + 1) * (MaxAutoRetriesNextServer + 1)
 
 
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 1000
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
 
 zuul:
   ignoredServices: '*'
   host:
-    connect-timeout-millis: 2000
-    socket-timeout-millis: 10000
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
   routes:
     auth-service:
       path: /uaa/**
