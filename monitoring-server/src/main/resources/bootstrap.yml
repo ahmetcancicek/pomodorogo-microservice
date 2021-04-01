@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: monitoring-server
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://config:8888}
+      fail-fast: true
+      username: ${CONFIG_SERVICE_USER_NAME:user}
+      password: ${CONFIG_SERVICE_USER_PASSWORD:password}
