@@ -17,6 +17,14 @@ services:
     ports:
       - "8761:8761"
 
+  monitoring:
+    restart: always
+    build:
+      context: ./monitoring-server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+
   gateway:
     restart: always
     build:
