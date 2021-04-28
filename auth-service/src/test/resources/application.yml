@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      username: ${MONGO_INITDB_USERNAME:user}
+      password: ${MONGO_INITDB_PASSWORD:password}
+      database: ${MONGO_INITDB_DATABASE:pomodorogo}
+      port: ${MONGODB_PORT:27017}
