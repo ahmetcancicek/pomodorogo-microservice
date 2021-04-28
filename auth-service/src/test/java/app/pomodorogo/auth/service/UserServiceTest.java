@@ -2,8 +2,7 @@ package app.pomodorogo.auth.service;
 
 import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import app.pomodorogo.auth.service.Impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,28 +12,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
+
+    @Mock
+    private UserRepository userRepository;
 
     @InjectMocks
     private UserServiceImpl userService;
 
     @Mock
-    private UserRepository userRepository;
-
-    @Mock
     private PasswordEncoder passwordEncoder;
 
-    @BeforeEach
-    public void setUp() {
-
-    }
-
     @Test
-    public void When_UserIsNotNullAndCreateUserCalled_Expect_SavedToDB() {
+    public void it_should_return_user_when_save_user() {
+        // given
         User user = User.builder()
                 .username("username")
                 .password("password")
@@ -42,15 +39,18 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
+        // when
         when(userRepository.save(user)).thenReturn(user);
+
+        // then
         User createdUser = userService.create(user);
-
-        assertNotNull(createdUser);
         verify(userRepository, times(1)).save(user);
+        assertEquals(createdUser.getUsername(), user.getUsername());
     }
 
     @Test
-    public void When_UsernameAlreadyExists_Expect_ReturnFail() {
+    public void it_should_throw_exception_when_save_user_with_existing_username() {
+        // given
         User user = User.builder()
                 .username("username")
                 .password("password")
@@ -58,15 +58,18 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
+        // when
         when(userRepository.findById(user.getUsername())).thenReturn(Optional.of(user));
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        // then
+        assertThrows(IllegalArgumentException.class, () -> {
             userService.create(user);
         });
     }
 
     @Test
-    public void When_EmailAlreadyExists_Expect_ReturnFail() {
+    public void it_should_throw_exception_when_save_user_with_existing_email() {
+        // given
         User user = User.builder()
                 .username("username")
                 .password("password")
@@ -74,15 +77,18 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
+        // when
         when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        // then
+        assertThrows(IllegalArgumentException.class, () -> {
             userService.create(user);
         });
     }
 
     @Test
-    public void When_UsernameExistAndFindByUsernameCalled_Expect_ReturnUser() {
+    public void it_should_return_user_when_find_user_byId() {
+        // given
         User user = User.builder()
                 .username("username")
                 .password("password")
@@ -90,12 +96,16 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
+        // when
         when(userRepository.findById(user.getUsername())).thenReturn(Optional.of(user));
-        assertNotNull(userService.findById(user.getUsername()));
+
+        // then
+        assertEquals(userService.findById(user.getUsername()).getUsername(), user.getUsername());
     }
 
     @Test
-    public void When_EmailExistAndFindByEmailCalled_Expect_ReturnUser() {
+    public void it_should_return_user_when_find_user_byEmail() {
+        // given
         User user = User.builder()
                 .username("username")
                 .password("password")
@@ -103,7 +113,11 @@ public class UserServiceTest {
                 .password("password")
                 .build();
 
+        // when
         when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
-        assertNotNull(userService.findByEmail(user.getEmail()));
+
+        // then
+        assertEquals(userService.findByEmail(user.getEmail()).getEmail(), user.getEmail());
+
     }
 }

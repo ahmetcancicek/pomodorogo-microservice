@@ -1,75 +1,40 @@
 package app.pomodorogo.auth.repository;
 
 import app.pomodorogo.auth.domain.User;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@DataMongoTest
 public class UserRepositoryTest {
 
-    User user;
-
     @Autowired
-    UserRepository repository;
-
-    @BeforeEach
-    public void setUp() {
-        user = User.builder()
-                .username("username")
-                .password("password")
-                .email("email@email.com")
-                .build();
-        repository.save(user);
-    }
-
-    @AfterEach
-    public void doClean() {
-        repository.deleteById(user.getUsername());
-    }
+    private UserRepository repository;
 
     @Test
-    public void When_UserIsFoundAndSaveCalled_Expect_ReturnFail() {
+    public void it_should_return_user_when_save_user() {
+        // given
         User user = User.builder()
                 .username("username")
                 .password("password")
-                .email("email@email.com")
+                .email("username@username.com")
+                .password("password")
                 .build();
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            repository.save(user);
-        });
-    }
 
-    @Test
-    public void When_UsernameExitsAndFindByIdCalled_Expect_ReturnUser() {
-        Optional<User> existingUser = repository.findById("username");
-        assertEquals(existingUser.isPresent(), true);
+        // then
+        Optional<User> existingUser = repository.findById(user.getUsername());
+        assertTrue(existingUser.isPresent());
+        assertEquals(user.getUsername(), existingUser.get().getUsername());
+        assertEquals(user.getEmail(), existingUser.get().getEmail());
     }
-
-    @Test
-    public void When_EmailExitsAndFindByEmailCalled_Expect_ReturnUser() {
-        Optional<User> existingUser = repository.findByEmail("username");
-        assertEquals(existingUser.isPresent(), true);
-    }
-
-    @Test
-    public void When_UsernameDoesNotExitsAndFindByIdCalled_Expect_ReturnFail() {
-        Optional<User> existingUser = repository.findById("test");
-        assertEquals(existingUser.isPresent(), false);
-    }
-
-    @Test
-    public void When_EmailDoesNotExitsAndFindByEmailCalled_Expect_ReturnFail() {
-        Optional<User> existingUser = repository.findByEmail("test");
-        assertEquals(existingUser.isPresent(), false);
-    }
-
 }
+
