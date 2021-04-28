@@ -1,6 +1,6 @@
 package app.pomodorogo.auth.controller;
 
-import app.pomodorogo.auth.dto.UserCreateRequest;
+import app.pomodorogo.auth.dto.CreateUserRequest;
 import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +26,8 @@ public class UserController {
 
     @PostMapping
     @PreAuthorize("#oauth2.hasScope('server')")
-    public void createUser(@Valid @RequestBody UserCreateRequest userCreateRequest) {
-        User user = modelMapper.map(userCreateRequest, User.class);
+    public void createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
+        User user = modelMapper.map(createUserRequest, User.class);
         userService.create(user);
     }
 }
