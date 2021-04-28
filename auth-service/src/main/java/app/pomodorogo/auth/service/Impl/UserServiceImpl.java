@@ -1,8 +1,9 @@
-package app.pomodorogo.auth.service;
+package app.pomodorogo.auth.service.Impl;
 
 import app.pomodorogo.auth.domain.User;
 import app.pomodorogo.auth.enums.Authorities;
 import app.pomodorogo.auth.repository.UserRepository;
+import app.pomodorogo.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
